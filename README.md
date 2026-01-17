@@ -1,33 +1,47 @@
 # VibeSync AI 🎥✨
 
-**VibeSync AI** is a professional-grade, local-first video captioning tool. It uses Artificial Intelligence to transcribe your videos and burn high-energy animated subtitles directly into the file—all without ever leaving your browser.
+**VibeSync AI** is a professional-grade, local-first video captioning tool designed specifically for **Shorts, Reels, and TikTok**. It uses in-browser Artificial Intelligence to transcribe video audio and permanently "burn" high-energy, animated subtitles directly into the video file.
 
 ---
 
 ## 🚀 The "Local-First" Advantage
-Unlike other video editors, VibeSync AI runs **entirely on your device**.
-* **Zero Server Costs:** Since the AI runs on your CPU/GPU, hosting is 100% free.
-* **Total Privacy:** Your videos are never uploaded to a server. Your data stays yours.
-* **No Latency:** No waiting for files to upload or download from a cloud. 
+Unlike other editors, VibeSync AI runs **entirely on your device**.
+* **Zero Server Costs:** The AI runs on the user's CPU/GPU. Hosting is free.
+* **Total Privacy:** Videos are never uploaded to a cloud server.
+* **Offline Capable:** Works without internet after the initial model download.
 
 ---
 
-## ✨ Key Features
-* **AI Transcription:** Powered by OpenAI's Whisper (Tiny.en) via `Transformers.js`.
-* **Animated Captions:** Dynamic, high-impact subtitles that move with the "vibe."
-* **WASM Rendering:** Professional video processing in-browser using `FFmpeg.wasm`.
-* **Auto-Emoji:** Intelligent keyword detection to add relevant emojis to your text.
-* **Theme Switcher:** Customize colors and styles to match your brand.
-* **Mobile-Ready Sharing:** Integrated Web Share API for instant social posting.
+## ✨ Key Features (v2.0)
+
+### 🤖 Dual AI Engines
+* **English Fast:** Ultra-lightweight model for instant English transcription.
+* **Multilingual:** Supports **100+ languages** (Spanish, French, Hindi, Chinese, etc.) with auto-detection.
+
+### ⚡ Viral Caption Logic
+* **Smart Splitting:** Automatically breaks long sentences into snappy **2-second chunks** perfect for high-retention vertical video.
+* **Word-Level Precision:** AI aligns text perfectly with speech.
+
+### 🎨 Professional Style Editor
+* **Custom Fonts:** Choose from Sans, Serif, Mono, Handwriting, and Impact.
+* **Visual Effects:** Add **Neon Glow**, **Box Backgrounds**, or Classic Outlines.
+* **Layout Control:** Adjust vertical position and text size in real-time.
+
+### 🎬 High-Res Export
+* **Native MP4 Support:** Uses modern `VideoEncoder` & `mp4-muxer` to export **4K-ready MP4s** without heavy external libraries like FFmpeg.
+* **Instant WebM:** Optional ultra-fast WebM export.
+
+### 💰 Monetization Ready
+* **Ad Banner Slots:** Pre-configured spaces to insert Google AdSense or sponsor banners.
 
 ---
 
 ## 🛠️ Tech Stack
--   **Framework:** React.js (v18)
--   **Animation:** Framer Motion
--   **AI Model:** Transformers.js (Whisper Tiny)
--   **Video Engine:** FFmpeg.wasm
--   **Hosting:** Cloudflare Pages (via GitHub)
+* **Framework:** React.js + Vite
+* **AI Inference:** `@xenova/transformers` (Whisper Tiny)
+* **Video Processing:** Native WebCodecs API + `mp4-muxer`
+* **Styling:** Pure CSS + HTML5 Canvas
+* **Icons:** Lucide React
 
 ---
 
@@ -43,30 +57,35 @@ Unlike other video editors, VibeSync AI runs **entirely on your device**.
     ```bash
     npm install
     ```
+    *(Note: This installs `mp4-muxer` and `transformers.js`)*
 
 3.  **Run Locally:**
     ```bash
-    npm start
+    npm run dev
     ```
 
 ---
 
-## 🌍 Cloudflare Deployment Guide
+## 🌍 Cloudflare Pages Deployment
+
 This project is optimized for Cloudflare Pages.
 
-1.  **Push to GitHub:** Ensure the `_headers` file is in your `public` folder.
-2.  **Connect Cloudflare:** Connect your GitHub repo to Cloudflare Pages.
-3.  **Build Settings:** * **Framework:** Create React App
+1.  **Connect GitHub:** Select your repo in the Cloudflare Dashboard.
+2.  **Build Settings:**
+    * **Framework Preset:** Vite
     * **Build Command:** `npm run build`
-    * **Output Directory:** `build`
-4.  **Security:** Cloudflare will automatically detect the `_headers` file and enable `Cross-Origin-Embedder-Policy`, which is required for the video engine to work.
+    * **Output Directory:** `dist`
+3.  **Environment Variables:**
+    * Add `NODE_VERSION` = `20` (Required for modern build tools).
+4.  **Deploy:** Click Save & Deploy.
 
 ---
 
-## ⚡ Performance Tip
-VibeSync AI is a heavyweight tool running in a lightweight environment. For the fastest transcription and rendering speeds, **using a laptop or desktop computer is highly recommended.**
+## ⚡ Important Notes
+* **First Run:** The app requires an internet connection the very first time you use a model to download it to the browser cache (~40MB for English, ~150MB for Multilingual).
+* **Browser Support:** Requires a modern browser (Chrome, Edge, Firefox, Brave) with `VideoEncoder` support.
 
 ---
 
 ## 📝 License
-MIT License - Created with ❤️ by Spido
+MIT License - Open Source & Free to Use.
